@@ -1,0 +1,35 @@
+{
+  "name": "pointage",
+  "version": "1.0.0",
+  "description": "Mini-project \"Pointage\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sobhisobhi/Pointage.git"
+  },
+  "author": "sobhisobhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sobhisobhi/Pointage/issues"
+  },
+  "homepage": "https://github.com/sobhisobhi/Pointage#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "mongoose": "^6.0.12",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.14",
+    "path": "^0.12.7",
+    "xss-clean": "^0.1.1"
+  }
+}
