@@ -7,9 +7,10 @@ const {
 } = require("../controllers/users");
 
 const router = express.Router({ mergeParams: true });
-//announces/get?${queryString}
-//router.route(`/?department=${department}`).get(getUsersByDepartment);
-router.route("/departments").get(getUsersByDepartment);
+
+router
+    .route("/departments")
+    .get(getUsersByDepartment);
 router
     .route("/")
     .get(getUsers)
