@@ -9,9 +9,12 @@ const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const hpp = require("hpp");
+const swaggerUi = require('swagger-ui-express');
 
+const swaggerDocument = require('./swagger.json');
 const DBconnection = require("./src/config/dbConnect");
 const errorHandler = require("./src/middleware/errorHandler");
+
 
 dotenv.config();
 
@@ -51,6 +54,9 @@ const versionOne = (routeName) => `/api/v1/${routeName}`;
 app.use(versionOne("users"), userRoutes);
 
 app.use(errorHandler);
+
+//@route api/v1/api-docs to access to all API developed with swagger-ui
+app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const server = app.listen(process.env.PORT, () => {
     /* eslint-disable no-console */

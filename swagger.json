@@ -1,0 +1,187 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description":
+        "This is a sample server documentation api to Pointage.  You can find out more about all endpoints developed with REST in Swagger. For this sample, you can use the api key `special-key` to test the authorization filters.",
+      "version": "1.0.0",
+      "title": "Swagger Pointage",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "users",
+        "description": "API for users in the Pointage "
+      }
+    ],
+    "schemes": ["http", "https"],
+    "paths": {
+        "/api/v1/users": {
+            "get": {
+              "tags": ["users"],
+              "summary": "return all Users",
+              "description": "Get all list of users",
+              "operationId": "getUsers",
+              "produces": ["application/json"],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definition/User"
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                },
+                "500": {
+                  "description": "Oops, Someting went wrong. Server error."
+                }
+              }
+            },
+            "post": {
+              "tags": ["users"],
+              "summary": "create user",
+              "description": "Add a new user.",
+              "operationId": "createUser",
+              "produces": ["application/json"],
+              "parameters": [
+                {
+                  "in": "body",
+                  "name": "body",
+                  "description": "User object that needs to be added to Pointage",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definition/User"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "User added successfuly."
+                },
+                "404": {
+                  "description": "No content sent to the Pointage server."
+                },
+                "500": {
+                  "description": "Oops, Someting went wrong. Server error."
+                }
+              }
+            }
+        },
+        "/api/v1/users/{id}": {
+            "put": {
+              "tags": ["users"],
+              "summary": "Updated user",
+              "description": "Update an existing user.",
+              "operationId": "updateUser",
+              "produces": ["application/json"],
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "description": "id of user that need to be updated",
+                  "required": true,
+                  "type": "string"
+                },
+                {
+                  "in": "body",
+                  "name": "body",
+                  "description": "The user object to update",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/definition/User"
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "User updated successfuly."
+                },
+                "204": {
+                  "description": "No content sent to the Pointage server."
+                },
+                "500": {
+                  "description": "Oops, Someting went wrong. Server error."
+                }
+              }
+            }
+        },
+        "/api/v1/users/departments": {
+            "get": {
+              "tags": ["users"],
+              "summary": "return users by department",
+              "description": "Get the list of users by department",
+              "operationId": "getUsersByDepartment",
+              "produces": ["application/json"],
+              "parameters": [
+                {
+                  "in": "query",
+                  "name": "department",
+                  "required": true,
+                  "type": "string",
+                  "description":
+                    "Return filtered users by department"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "successful operation",
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definition/User"
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid status value"
+                },
+                "500": {
+                  "description": "Oops, Something went wrong. Server error."
+                }
+              }
+            }
+        }
+    },
+    "definition": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "idEmp": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "dateCreated": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "department": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "User"
+            }
+        },
+        "UserObject": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "$ref": "#/definition/User"
+              }
+            }
+        }
+    }
+}
